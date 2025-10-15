@@ -128,55 +128,31 @@ ax.grid(True)
 
 st.pyplot(fig)
 
-# Parte 4 — Extensión creativa: Pestañas y Calculadora de Pitágoras
+# Parte 4 — Extensión creativa: pestañas y calculadora de Pitágoras
 
-st.header("🧩 Extensión creativa")
+st.header("⚙️ Parte 4 — Extensión creativa")
 
 # Crear pestañas para separar Geometría y Trigonometría
-tab1, tab2, tab3 = st.tabs(["Geometría", "Trigonometría", "Teorema de Pitágoras"])
+tab_geom, tab_trig, tab_pitagoras = st.tabs(["Geometría", "Trigonometría", "Teorema de Pitágoras"])
 
-with tab1:
-    st.subheader("📐 Calculadora de Áreas y Perímetros")
+with tab_geom:
+    st.subheader("📐 Calculadora de Áreas y Perímetros y Visualización")
+    
+    # (Aquí repetirías el código que tienes para geometría y visualización,
+    # o si quieres puedes definir funciones para modularizarlo y solo llamar)
+    
+    # Como ya mostraste la geometría arriba, puedes solo mostrar un mensaje aquí
+    st.info("La calculadora de áreas, perímetros y visualización se muestra en la Parte 1 y 2.")
 
-    figura = st.selectbox("Selecciona una figura:", ["Círculo", "Triángulo", "Rectángulo", "Cuadrado"], key="geom_figura")
-
-    area = None
-    perimetro = None
-
-    if figura == "Círculo":
-        radio = st.slider("Selecciona el radio (r)", 0.0, 100.0, 10.0, key="geom_radio")
-        area = math.pi * radio ** 2
-        perimetro = 2 * math.pi * radio
-
-    elif figura == "Triángulo":
-        base = st.number_input("Base (b)", min_value=0.0, value=5.0, key="geom_base")
-        altura = st.number_input("Altura (h)", min_value=0.0, value=3.0, key="geom_altura")
-        lado_a = st.number_input("Lado a", min_value=0.0, value=5.0, key="geom_lado_a")
-        lado_b = st.number_input("Lado b", min_value=0.0, value=4.0, key="geom_lado_b")
-        lado_c = st.number_input("Lado c", min_value=0.0, value=6.0, key="geom_lado_c")
-        area = 0.5 * base * altura
-        perimetro = lado_a + lado_b + lado_c
-
-    elif figura == "Rectángulo":
-        base = st.number_input("Base (b)", min_value=0.0, value=6.0, key="geom_base_rect")
-        altura = st.number_input("Altura (h)", min_value=0.0, value=4.0, key="geom_altura_rect")
-        area = base * altura
-        perimetro = 2 * (base + altura)
-
-    elif figura == "Cuadrado":
-        lado = st.number_input("Lado (l)", min_value=0.0, value=5.0, key="geom_lado_cuad")
-        area = lado ** 2
-        perimetro = 4 * lado
-
-    if area is not None and perimetro is not None:
-        st.success(f"Área: {area:.2f}")
-        st.success(f"Perímetro: {perimetro:.2f}")
-
-with tab2:
+with tab_trig:
     st.subheader("🔢 Relaciones trigonométricas")
-
-    max_x = st.slider("Selecciona el rango máximo de x (en radianes)", min_value=1.0, max_value=10.0, value=2*np.pi, step=0.1, key="trig_max_x")
-    amp = st.slider("Amplitud", 0.1, 5.0, 1.0, key="trig_amp")
+    
+    # Mostrar el gráfico trigonométrico que ya tienes en la Parte 3
+    # Para evitar duplicar código, puedes mover la Parte 3 dentro de una función y llamarla aquí,
+    # pero por simplicidad aquí lo dejo repetido.
+    
+    max_x = st.slider("Selecciona el rango máximo de x (en radianes)", min_value=1.0, max_value=10.0, value=2*np.pi, step=0.1, key="max_x_tab")
+    amp = st.slider("Amplitud", 0.1, 5.0, 1.0, key="amp_tab")
 
     x = np.linspace(0, max_x, 500)
 
@@ -195,3 +171,25 @@ with tab2:
 
     st.pyplot(fig)
 
+with tab_pitagoras:
+    st.subheader("📏 Calculadora del Teorema de Pitágoras")
+
+    st.write("Calcula la hipotenusa o un cateto de un triángulo rectángulo.")
+
+    opcion = st.radio("¿Qué deseas calcular?", ["Hipotenusa", "Cateto"])
+
+    if opcion == "Hipotenusa":
+        cateto1 = st.number_input("Introduce el cateto 1", min_value=0.0, value=3.0)
+        cateto2 = st.number_input("Introduce el cateto 2", min_value=0.0, value=4.0)
+        hipotenusa = math.sqrt(cateto1**2 + cateto2**2)
+        st.success(f"La hipotenusa es: {hipotenusa:.2f}")
+
+    else:  # Calcular cateto
+        hipotenusa = st.number_input("Introduce la hipotenusa", min_value=0.0, value=5.0)
+        cateto_conocido = st.number_input("Introduce el cateto conocido", min_value=0.0, value=3.0)
+
+        if hipotenusa <= cateto_conocido:
+            st.error("La hipotenusa debe ser mayor que el cateto conocido.")
+        else:
+            cateto_desconocido = math.sqrt(hipotenusa**2 - cateto_conocido**2)
+            st.success(f"El cateto desconocido es: {cateto_desconocido:.2f}")
