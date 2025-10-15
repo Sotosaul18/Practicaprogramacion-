@@ -97,3 +97,33 @@ ax.axis('off')  # Ocultar ejes
 # Mostrar figura 
 st.pyplot(fig)
 
+import numpy as np
+
+st.header("🔢 Parte 3 — Relaciones trigonométricas")
+
+# Slider para seleccionar el rango máximo en radianes (desde 0 hasta max_x)
+max_x = st.slider("Selecciona el rango máximo de x (en radianes)", min_value=1.0, max_value=10.0, value=2*np.pi, step=0.1)
+
+# Slider para modificar la amplitud
+amp = st.slider("Amplitud", 0.1, 5.0, 1.0)
+
+# Generar datos x en el rango 0 a max_x
+x = np.linspace(0, max_x, 500)
+
+# Graficar funciones trigonométricas usando st.pyplot
+fig, ax = plt.subplots(figsize=(8, 4))
+
+ax.plot(x, amp * np.sin(x), label='sin(x)')
+ax.plot(x, amp * np.cos(x), label='cos(x)')
+# Para tan(x), limitar el rango para evitar valores muy grandes (usar np.clip para visualización)
+tan_values = amp * np.tan(x)
+tan_values = np.clip(tan_values, -10, 10)  # limitar valores para que gráfico sea legible
+ax.plot(x, tan_values, label='tan(x) (limitado)')
+
+ax.set_title("Funciones trigonométricas")
+ax.set_xlabel("x (radianes)")
+ax.set_ylabel("Amplitud ajustada")
+ax.legend()
+ax.grid(True)
+
+st.pyplot(fig)
