@@ -56,46 +56,41 @@ if area is not None and perimetro is not None:
 
 import matplotlib.pyplot as plt
 
-# Picker de color para personalizar la figura
-color = st.color_picker("Elige un color para la figura", "#0000FF")
+# Parte 2 — Visualización
+st.subheader("🎨 Visualización de la figura")
 
-# Visualización de la figura
+# Selector de color
+color = st.color_picker("Selecciona un color para la figura", "#00f900")
+
 fig, ax = plt.subplots()
 
 if figura == "Círculo":
-    circle = plt.Circle((0, 0), radio, color=color, fill=False, linewidth=3)
+    circle = plt.Circle((0, 0), radio, color=color, fill=False)
     ax.add_artist(circle)
-    ax.set_xlim(-radio * 1.5, radio * 1.5)
-    ax.set_ylim(-radio * 1.5, radio * 1.5)
-    ax.set_aspect('equal')
-    ax.axis('off')
+    ax.set_xlim(-radio * 1.2, radio * 1.2)
+    ax.set_ylim(-radio * 1.2, radio * 1.2)
 
 elif figura == "Triángulo":
-    # Coordenadas aproximadas de un triángulo a partir de la base y altura
+    # Dibujamos un triángulo genérico con vértices dados
     puntos = [[0, 0], [base, 0], [base / 2, altura]]
-    triangulo = plt.Polygon(puntos, closed=True, fill=False, edgecolor=color, linewidth=3)
+    triangulo = plt.Polygon(puntos, edgecolor=color, fill=False)
     ax.add_patch(triangulo)
     ax.set_xlim(-1, base + 1)
-    ax.set_ylim(-1, altura + 1)
-    ax.set_aspect('equal')
-    ax.axis('off')
+    ax.set_ylim(-1, altura + 2)
 
 elif figura == "Rectángulo":
-    rectangulo = plt.Rectangle((0, 0), base, altura, fill=False, edgecolor=color, linewidth=3)
-    ax.add_patch(rectangulo)
+    rect = plt.Rectangle((0, 0), base, altura, edgecolor=color, fill=False)
+    ax.add_patch(rect)
     ax.set_xlim(-1, base + 1)
     ax.set_ylim(-1, altura + 1)
-    ax.set_aspect('equal')
-    ax.axis('off')
 
 elif figura == "Cuadrado":
-    cuadrado = plt.Rectangle((0, 0), lado, lado, fill=False, edgecolor=color, linewidth=3)
-    ax.add_patch(cuadrado)
+    rect = plt.Rectangle((0, 0), lado, lado, edgecolor=color, fill=False)
+    ax.add_patch(rect)
     ax.set_xlim(-1, lado + 1)
     ax.set_ylim(-1, lado + 1)
-    ax.set_aspect('equal')
-    ax.axis('off')
 
-# Mostrar la figura en Streamlit
+# Estética del gráfico
+ax.set_aspect('equal')
+ax.axis('off')  # Oculta los ejes
 st.pyplot(fig)
-
