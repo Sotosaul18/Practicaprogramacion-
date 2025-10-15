@@ -97,30 +97,3 @@ ax.axis('off')  # Ocultar ejes
 # Mostrar figura 
 st.pyplot(fig)
 
-# --- Parte 3: Relaciones trigonométricas ---
-with tab3:
-    st.header("📈 Funciones trigonométricas")
-
-    # Rango de x (de 0 a 2π por defecto)
-    rango_min, rango_max = 0.0, 2 * np.pi
-    rango = st.slider("Selecciona el rango de x (radianes)", 0.0, 10.0, (rango_min, rango_max), step=0.1)
-
-    # Amplitud
-    amp = st.slider("Amplitud", 0.1, 5.0, 1.0)
-
-    x = np.linspace(rango[0], rango[1], 300)
-
-    # Graficar funciones usando st.line_chart (simple)
-    st.write("Función seno:")
-    st.line_chart(amp * np.sin(x))
-
-    st.write("Función coseno:")
-    st.line_chart(amp * np.cos(x))
-
-    st.write("Función tangente:")
-    # Para evitar valores muy grandes en tangente, limitamos un poco y filtramos
-    y_tan = amp * np.tan(x)
-    y_tan = np.where(np.abs(y_tan) > 10, np.nan, y_tan)  # Remplaza valores muy grandes con NaN para que no distorsione
-
-    st.line_chart(y_tan)
-
