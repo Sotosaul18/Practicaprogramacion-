@@ -53,11 +53,6 @@ if area is not None and perimetro is not None:
     # st.metric("Área", f"{area:.2f}")
     # st.metric("Perímetro", f"{perimetro:.2f}")
 
-import streamlit as st
-import math
-import matplotlib.pyplot as plt
-import numpy as np
-
 st.set_page_config(page_title="Calculadora Geométrica y Trigonometría", layout="centered")
 st.title("📐 Calculadora Geométrica y Trigonometría")
 
