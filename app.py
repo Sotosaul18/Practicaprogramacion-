@@ -144,33 +144,6 @@ with tab_geom:
     # Como ya mostraste la geometría arriba, puedes solo mostrar un mensaje aquí
     st.info("La calculadora de áreas, perímetros y visualización se muestra en la Parte 1 y 2.")
 
-with tab_trig:
-    st.subheader("🔢 Relaciones trigonométricas")
-    
-    # Mostrar el gráfico trigonométrico que ya tienes en la Parte 3
-    # Para evitar duplicar código, puedes mover la Parte 3 dentro de una función y llamarla aquí,
-    # pero por simplicidad aquí lo dejo repetido.
-    
-    max_x = st.slider("Selecciona el rango máximo de x (en radianes)", min_value=1.0, max_value=10.0, value=2*np.pi, step=0.1, key="max_x_tab")
-    amp = st.slider("Amplitud", 0.1, 5.0, 1.0, key="amp_tab")
-
-    x = np.linspace(0, max_x, 500)
-
-    fig, ax = plt.subplots(figsize=(8, 4))
-    ax.plot(x, amp * np.sin(x), label='sin(x)')
-    ax.plot(x, amp * np.cos(x), label='cos(x)')
-    tan_values = amp * np.tan(x)
-    tan_values = np.clip(tan_values, -10, 10)
-    ax.plot(x, tan_values, label='tan(x) (limitado)')
-
-    ax.set_title("Funciones trigonométricas")
-    ax.set_xlabel("x (radianes)")
-    ax.set_ylabel("Amplitud ajustada")
-    ax.legend()
-    ax.grid(True)
-
-    st.pyplot(fig)
-
 with tab_pitagoras:
     st.subheader("📏 Calculadora del Teorema de Pitágoras")
 
