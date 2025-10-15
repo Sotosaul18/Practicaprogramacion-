@@ -1,5 +1,6 @@
 import streamlit as st
 st.title("Mi aplicación para calcular el area de un circulo ⭕")
+st.sidebar.write("Saúl Leonardo Soto Rios. Matricula 385853. Grupo 3L")
 import math
 #Widget para ingresar el radio
 radio = st.slider("Selecciona el radio", 0.0, 10.0, 5.0)
