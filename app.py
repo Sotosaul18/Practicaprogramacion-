@@ -94,5 +94,5 @@ elif figura == "Cuadrado":
 ax.set_aspect('equal')
 ax.axis('off')  # Ocultar ejes
 
-# Mostrar figura en Streamlit
+# Mostrar figura 
 st.pyplot(fig)
