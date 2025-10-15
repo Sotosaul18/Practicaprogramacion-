@@ -6,8 +6,9 @@ radio = st.slider("Selecciona el radio", 0.0, 10.0, 5.0)
 #calculo del area
 area = math.pi * radio **2
 #Mostrar resultado
-st.write(f"El área del círculo con radio (radio) es:{area:.2f}")
+st.write(f"El área del círculo con radio (radio) es: {area:.2f}")
 
+#Parte 1:
 import streamlit as st
 import math
 
