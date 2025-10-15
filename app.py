@@ -133,7 +133,7 @@ st.pyplot(fig)
 st.header("⚙️ Parte 4 — Extensión creativa")
 
 # Crear pestañas para separar Geometría y Trigonometría
-tab_geom, tab_pitagoras = st.tabs(["Geometría", "Trigonometría", "Teorema de Pitágoras"])
+tab_geom, tab_pitagoras = st.tabs(["Geometría", "Teorema de Pitágoras"])
 
 with tab_geom:
     st.subheader("📐 Calculadora de Áreas y Perímetros y Visualización")
