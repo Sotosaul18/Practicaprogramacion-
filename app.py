@@ -54,3 +54,48 @@ if area is not None and perimetro is not None:
     # st.metric("Área", f"{area:.2f}")
     # st.metric("Perímetro", f"{perimetro:.2f}")
 
+import matplotlib.pyplot as plt
+
+# Picker de color para personalizar la figura
+color = st.color_picker("Elige un color para la figura", "#0000FF")
+
+# Visualización de la figura
+fig, ax = plt.subplots()
+
+if figura == "Círculo":
+    circle = plt.Circle((0, 0), radio, color=color, fill=False, linewidth=3)
+    ax.add_artist(circle)
+    ax.set_xlim(-radio * 1.5, radio * 1.5)
+    ax.set_ylim(-radio * 1.5, radio * 1.5)
+    ax.set_aspect('equal')
+    ax.axis('off')
+
+elif figura == "Triángulo":
+    # Coordenadas aproximadas de un triángulo a partir de la base y altura
+    puntos = [[0, 0], [base, 0], [base / 2, altura]]
+    triangulo = plt.Polygon(puntos, closed=True, fill=False, edgecolor=color, linewidth=3)
+    ax.add_patch(triangulo)
+    ax.set_xlim(-1, base + 1)
+    ax.set_ylim(-1, altura + 1)
+    ax.set_aspect('equal')
+    ax.axis('off')
+
+elif figura == "Rectángulo":
+    rectangulo = plt.Rectangle((0, 0), base, altura, fill=False, edgecolor=color, linewidth=3)
+    ax.add_patch(rectangulo)
+    ax.set_xlim(-1, base + 1)
+    ax.set_ylim(-1, altura + 1)
+    ax.set_aspect('equal')
+    ax.axis('off')
+
+elif figura == "Cuadrado":
+    cuadrado = plt.Rectangle((0, 0), lado, lado, fill=False, edgecolor=color, linewidth=3)
+    ax.add_patch(cuadrado)
+    ax.set_xlim(-1, lado + 1)
+    ax.set_ylim(-1, lado + 1)
+    ax.set_aspect('equal')
+    ax.axis('off')
+
+# Mostrar la figura en Streamlit
+st.pyplot(fig)
+
